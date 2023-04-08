@@ -1,0 +1,153 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: seagreen;
+}
+
+main{
+    background-color: white;
+    width: 43%;
+    margin: 70px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px 10px 0 0;
+}
+
+#view-task{
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+main section{
+    padding: 5px;
+}
+
+main header form{
+    display: flex;
+    padding: 5px;
+    margin-bottom: 2px;
+}
+
+main header input{
+    flex-grow: 1;
+    height: 40px;
+    padding-left: 5px;
+}
+
+main header button{
+    background-color: white;
+    border: none;
+}
+
+main header i{
+    font-size: 36px;
+    color: seagreen;
+}
+
+
+.toast-add{
+    width: 300px;
+    margin: 40px auto 0 auto;
+    padding: 5px;
+    background-color: darkcyan;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.show{
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.hide{
+    opacity: 0;
+    height: 0;
+    margin: 0;
+}
+
+
+.content{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 100%;
+    max-width: min-content;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: khaki;
+    border-radius: 5px;
+    border: 2px solid white;
+}
+
+.content .title{
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-family: 'Phudu', cursive;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 22px;
+    white-space: nowrap; 
+}
+
+.content .item-task{
+    display: flex;
+}
+
+.content .tool-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tool-button button, input{
+    width: 34px;
+    height: 34px;
+    margin: 0 4px;
+}
+
+.tool-button i{
+    font-size: 34px;
+    width: 34px;
+    height: 34px;
+    color: darkgoldenrod;
+}
+
+
+.content  .item{
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    margin: 6px;
+    width: calc(100% - 100px);
+}
+
+.content .item-task:nth-child(2n -1){
+    background-color: khaki;
+    border-radius: 10px 2px;
+}
+
+.content .item-task:hover{
+    cursor: pointer;
+}
+
+.item-task .info-task{
+    display: flex;
+    margin-top: 2px;
+    justify-content: space-between;
+    text-transform: uppercase;
+    color: #4D4D4D;
+    font-weight: bold;
+    font-size: .88em;
+}
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Gerenciador de Tarefas </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@700&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script>
+        function showMsg(event){
+        
+            toast = document.querySelector('.toast-add')
+
+            toast.classList.remove('hide')
+            toast.classList.add('show')
+            document.querySelector('main').style.marginTop = '20px'
+            
+            setTimeout( () => {
+                toast.classList.remove('show')
+                toast.classList.add('hide') 
+                document.querySelector('main').style.marginTop = '70px'
+                window.location.href="{{ url_for( 'index') }}"
+            }, 400)
+        }
+    </script>
+</head>
+<body onload="{{ func }}">
+    <div class="toast-add hide" >
+        {% if msg %}
+            <strong> {{msg}} </strong>
+        {% else %}
+            <strong> Tarefa adcionada com sucesso </strong>
+        {% endif %}
+    </div>
+    <main>
+        <section id="view-task">
+            <header>
+                <form action="{{ url_for('index') }}" method="post">
+                    <input type="text" placeholder="Adciona sua tarefa" name="task"> 
+                    <button type="submit">
+                        <i class="bi bi-plus-circle-fill"> </i>
+                    </button>
+                </form>
+            </header>
+    
+            <div class="content">
+                {% for item in loadF[::-1] %}
+                    <div class="item-task" id="{{ item['id'] }}">
+                        <div class="item">
+                            <h2 class="title"> {{ item['task'] }}  </h2>
+                            <div class="info-task">
+                                <p class="state"> Status: {{ item['state']}} </p>
+                            </div>
+                        </div>
+                        <div class="tool-button">
+                            {%if item['state'] == 'Feito' %}
+                                <input type="checkbox" name="check" id="{{ 'item-{}'.format(item['id']) }}" onchange="window.location.href='{{ url_for( 'index' , change_item=item['id'] ) }}';" checked>
+                            {% else %}
+                                <input type="checkbox" name="check" id="{{ 'item-{}'.format(item['id']) }}" onchange="window.location.href='{{ url_for( 'index' , change_item=item['id'] ) }}';">
+                            {% endif %}
+                            <i class="bi-trash-fill" onclick="window.location.href='{{ url_for( 'index' , del_item=item['id'] ) }}';"> </i>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>
